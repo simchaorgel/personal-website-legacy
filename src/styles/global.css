@@ -24,7 +24,7 @@
 ::view-transition-old(root),
 ::view-transition-new(root) {
 	/* Safety net: never let a momentarily-blank snapshot flash white */
-	background-color: var(--beige);
+	background-color: var(--desktop-bg);
 }
 
 ::view-transition-old(root) {
@@ -59,16 +59,40 @@
 
 /* ---- Theme tokens (shared across every desktop) ---- */
 :root {
-	--beige: #ede4d3;
-	--grid-line: #d8cbb3;
-	--box-size: 40px;
-	--line-thickness: 3px;
+	/* ---- Desktop surface ---- */
+	--desktop-bg: #000000;
+	--desktop-ink: #ffffff; /* icon labels on the desktop surface */
+
+	/* Desktop texture: an SVG of fractal noise, desaturated to grey and knocked
+	   back with `opacity`. It's a data URI, so `var()` can't reach inside it —
+	   tune it by editing the numbers in the string:
+	     baseFrequency  the zoom. 0.8 = fine film grain; 0.012 = big soft clouds
+	     numOctaves     detail layered into it (more = wispier, costs more)
+	     opacity        strength over the black
+	   Set to `none` for flat black. */
+	--desktop-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='1000'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 
 	/* Window surface */
-	--window-bg: var(--beige); /* same as the desktop background */
-	--window-border: #3a3a3a;
+	--window-bg: #ffffff;
+	--window-border: #000000;
+	/* The olive accent — buttons, chips, focus rings, rules. */
 	--window-bar: #566246;
+	/* Title-bar chrome */
+	--titlebar-bg: #000000;
+	--titlebar-ink: #f2f0e9;
 	--close-red: #e1443a;
+	/* Neutral tint behind an image that hasn't loaded (avatar, photo cells). */
+	--placeholder: #dcdcdc;
+
+	/* Hover/focus accent. Two of them, because the surface flips: icons on the
+	   black desktop ring slate, icons inside white windows ring black.
+	   For a neutral grey instead of the blue cast: #55595e / rgba(85, 89, 94, …). */
+	--hover-desktop: #4a5c6e;
+	--hover-desktop-glow: rgba(74, 92, 110, 0.5);
+	--hover-desktop-glow-strong: rgba(74, 92, 110, 0.9);
+	--hover-window: #000000;
+	--hover-window-glow: rgba(0, 0, 0, 0.18);
+	--hover-window-glow-strong: rgba(0, 0, 0, 0.42);
 
 	/* Text */
 	--ink: #3a3a3a;
@@ -84,6 +108,8 @@
 
 	/* Layout */
 	--taskbar-h: 58px;
+	/* Taskbar — slightly translucent so the desktop texture shows faintly through */
+	--taskbar-bg: rgba(0, 0, 0, 0.82);
 }
 
 /* ---- Reset ---- */
@@ -118,14 +144,15 @@ body {
 /* On <html> (the view-transition root) so navigations never flash white. */
 html {
 	min-height: 100vh;
-	background-color: var(--beige);
-	/* Grid drawn with two repeating linear gradients */
-	background-image:
-		linear-gradient(to right, var(--grid-line) var(--line-thickness), transparent var(--line-thickness)),
-		linear-gradient(to bottom, var(--grid-line) var(--line-thickness), transparent var(--line-thickness));
-	background-size: var(--box-size) var(--box-size);
-	/* Center the tiling so a cell sits in the middle of the viewport */
+	background-color: var(--desktop-bg);
+	/* The noise is stretched to `cover` rather than tiled — at this zoom the
+	   pattern is big enough that a repeat seam would be obvious. */
+	background-image: var(--desktop-noise);
+	background-size: cover;
+	background-repeat: no-repeat;
 	background-position: center center;
+	/* Pin the noise to the viewport so it doesn't crawl when a page scrolls. */
+	background-attachment: fixed;
 }
 
 /* ---- Shutdown overlay ----

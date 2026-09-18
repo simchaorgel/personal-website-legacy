@@ -141,7 +141,7 @@ const sizeStyle = [width && `--win-w: ${width}`, height && `--win-h: ${height}`]
 
 	.window-bar {
 		height: 38px;
-		background: var(--window-bar);
+		background: var(--titlebar-bg);
 		border-bottom: 3px solid var(--window-border);
 
 		display: flex;
@@ -160,7 +160,7 @@ const sizeStyle = [width && `--win-w: ${width}`, height && `--win-h: ${height}`]
 	}
 
 	.window-title {
-		color: #ece8d8;
+		color: var(--titlebar-ink);
 		font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
 		font-size: 16px;
 		letter-spacing: 0.02em;
@@ -180,7 +180,7 @@ const sizeStyle = [width && `--win-w: ${width}`, height && `--win-h: ${height}`]
 		display: grid;
 		place-items: center;
 
-		background: #3f4a33; /* darker green than the bar */
+		background: #2a2a2a; /* a touch lighter than the black bar */
 		border: 2px solid #fff;
 		border-radius: 3px;
 		cursor: pointer;

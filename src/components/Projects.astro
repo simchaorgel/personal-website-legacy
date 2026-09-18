@@ -321,7 +321,7 @@ const fulls = await Promise.all(
 
 	.proj-shot-btn:hover {
 		filter: brightness(1.04);
-		box-shadow: 0 0 0 1.5px rgba(106, 122, 78, 0.35); /* olive ring, like the photo cells */
+		box-shadow: 0 0 0 1.5px var(--hover-window-glow); /* black ring, like the photo cells */
 	}
 
 	.proj-shot-btn:focus {
@@ -329,7 +329,7 @@ const fulls = await Promise.all(
 	}
 
 	.proj-shot-btn:focus-visible {
-		box-shadow: 0 0 0 1.5px rgba(106, 122, 78, 0.55);
+		box-shadow: 0 0 0 1.5px var(--hover-window-glow-strong);
 	}
 
 	.proj-shot {

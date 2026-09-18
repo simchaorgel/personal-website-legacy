@@ -371,13 +371,13 @@ const tinies = await Promise.all(
 		border: none;
 		border-radius: 4px;
 		overflow: hidden;
-		background: var(--grid-line);
+		background: var(--placeholder);
 		transition: box-shadow 120ms ease, filter 120ms ease;
 	}
 
 	.photos__cell:hover {
 		filter: brightness(1.05);
-		box-shadow: 0 0 0 3px rgba(106, 122, 78, 0.35); /* olive ring, like icon hover */
+		box-shadow: 0 0 0 3px var(--hover-window-glow-strong); /* black ring, like icon hover */
 	}
 
 	.photos__thumb {

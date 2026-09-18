@@ -103,20 +103,20 @@ if (center) {
 	}
 
 	.desktop-icon__hit:hover .desktop-icon__box {
-		border-color: var(--window-bar);
-		box-shadow: 0 0 0 3px rgba(106, 122, 78, 0.18);
+		border-color: var(--hover-desktop);
+		box-shadow: 0 0 0 3px var(--hover-desktop-glow);
 	}
 
 	/* Kill the default black focus rectangle around the whole box + label.
-	   Show a tasteful olive ring on the box instead, and only for keyboard
+	   Show a slate ring on the box instead, and only for keyboard
 	   users (:focus-visible) — a mouse click won't flash it. */
 	.desktop-icon__hit:focus {
 		outline: none;
 	}
 
 	.desktop-icon__hit:focus-visible .desktop-icon__box {
-		border-color: var(--window-bar);
-		box-shadow: 0 0 0 3px rgba(106, 122, 78, 0.45);
+		border-color: var(--hover-desktop);
+		box-shadow: 0 0 0 3px var(--hover-desktop-glow-strong);
 	}
 
 	.desktop-icon__img {
@@ -129,7 +129,7 @@ if (center) {
 	.desktop-icon__label {
 		font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
 		font-size: 18px;
-		color: var(--ink);
+		color: var(--desktop-ink);
 		text-align: center;
 	}
 </style>

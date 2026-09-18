@@ -131,8 +131,8 @@ const { items } = Astro.props;
 	}
 
 	.icondesk__icon:hover .icondesk__icon-box {
-		border-color: var(--window-bar);
-		box-shadow: 0 0 0 3px rgba(106, 122, 78, 0.18);
+		border-color: var(--hover-window);
+		box-shadow: 0 0 0 3px var(--hover-window-glow);
 	}
 
 	/* Replace the default black focus rectangle with an olive ring on the box,
@@ -142,8 +142,8 @@ const { items } = Astro.props;
 	}
 
 	.icondesk__icon:focus-visible .icondesk__icon-box {
-		border-color: var(--window-bar);
-		box-shadow: 0 0 0 3px rgba(106, 122, 78, 0.45);
+		border-color: var(--hover-window);
+		box-shadow: 0 0 0 3px var(--hover-window-glow-strong);
 	}
 
 	@media (max-width: 640px) {
